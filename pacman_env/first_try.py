@@ -54,13 +54,11 @@ def adapt_obs(obs):
         #          mean_y_board-ly:mean_y_board+ry] \
         #    = new_obs[min_x:max_x,
         #              min_y:max_y]
-        print(np.min(new_obs), np.max(new_obs), type(new_obs))
         new_board[radius-lx:radius+rx,
                   radius-ly:radius+ry] \
             = new_obs[min_x:max_x,
                       min_y:max_y]
         new_obs = new_board
-        print(np.min(new_obs), np.max(new_obs), type(new_obs))
     if plot:
         im = plt.imshow(new_obs, animated=True)
         IMAGES.append([im])
