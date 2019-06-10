@@ -12,7 +12,7 @@ env = DummyVecEnv([lambda: env])
 model = PPO2(CnnPolicy, env, verbose=1, vf_coef=1, tensorboard_log="./logs/baseline_MDP")
 
 eval_scores = []
-for ep in range(10):
+for ep in range(100):
     obs = env.reset()
     total_reward = 0
     done = False
@@ -26,7 +26,7 @@ print(f"Before learning: {np.mean(eval_scores)}")
 model.learn(total_timesteps=10000000)
 
 eval_scores = []
-for ep in range(10):
+for ep in range(100):
     obs = env.reset()
     total_reward = 0
     done = False
