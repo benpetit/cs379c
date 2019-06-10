@@ -2,14 +2,14 @@ import pacman
 import gym
 import numpy as np
 
-from stable_baselines.common.policies import MlpPolicy
+from stable_baselines.common.policies import MlpPolicy, CnnPolicy
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import PPO2
 
 # env = pacman.POPacman(20)
 env = gym.make('MsPacman-v0')
 env = DummyVecEnv([lambda: env])
-model = PPO2(MlpPolicy, env, verbose=0, tensorboard_log="./logs/baseline_MDP")
+model = PPO2(CnnPolicy, env, verbose=0, tensorboard_log="./logs/baseline_MDP")
 
 eval_scores = []
 for ep in range(10):
