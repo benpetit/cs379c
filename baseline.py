@@ -7,10 +7,9 @@ from stable_baselines.common.policies import MlpPolicy, CnnPolicy
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import PPO2, DQN
 
-# env = pacman.POPacman(20)
 env = gym.make('MsPacman-v0')
 env = DummyVecEnv([lambda: env])
-model = PPO2(CnnPolicy, env, verbose=1, tensorboard_log="./logs/baseline_MDP")
+model = PPO2(CnnPolicy, env, verbose=1, vf_coef=1, tensorboard_log="./logs/baseline_MDP")
 
 eval_scores = []
 for ep in range(10):
@@ -24,7 +23,7 @@ for ep in range(10):
     eval_scores.append(total_reward)
 print(f"Before learning: {np.mean(eval_scores)}")
 
-model.learn(total_timesteps=3000000)
+model.learn(total_timesteps=10000000)
 
 eval_scores = []
 for ep in range(10):
