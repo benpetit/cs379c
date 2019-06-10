@@ -24,7 +24,7 @@ for ep in range(10):
     eval_scores.append(total_reward)
 print(f"Before learning: {np.mean(eval_scores)}")
 
-model.learn(total_timesteps=10000000)
+model.learn(total_timesteps=3000000)
 
 eval_scores = []
 for ep in range(10):
