@@ -15,7 +15,8 @@ eval_scores = []
 for ep in range(10):
     obs = env.reset()
     total_reward = 0
-    for i in range(1000):
+    done = False
+    while not done:
         action, _states = model.predict(obs)
         obs, reward, done, info = env.step(action)
         total_reward += reward
@@ -30,7 +31,8 @@ for k in range(1000):
         for ep in range(10):
             obs = env.reset()
             total_reward = 0
-            for i in range(1000):
+            done = False
+            while not done:
                 action, _states = model.predict(obs)
                 obs, reward, done, info = env.step(action)
                 total_reward += reward
