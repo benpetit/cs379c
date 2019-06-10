@@ -22,7 +22,7 @@ for ep in range(10):
     eval_scores.append(total_reward)
 print(f"Before learning: {np.mean(eval_scores)}")
 
-for k in range(300):
+for k in range(1000):
     print(f"Epoch {k}")
     model.learn(total_timesteps=1000)
     if k%10 == 0:
