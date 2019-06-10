@@ -9,7 +9,7 @@ from stable_baselines import PPO2
 # env = pacman.POPacman(20)
 env = gym.make('MsPacman-v0')
 env = DummyVecEnv([lambda: env])
-model = PPO2(MlpPolicy, env, verbose=0)
+model = PPO2(MlpPolicy, env, verbose=0, tensorboard_log="./logs/baseline_MDP")
 
 for k in range(300):
     print(f"Epoch {k}")
