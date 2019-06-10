@@ -2,7 +2,8 @@ import pacman
 import gym
 import numpy as np
 
-from stable_baselines.common.policies import MlpPolicy, CnnPolicy
+# from stable_baselines.common.policies import MlpPolicy, CnnPolicy
+from stable_baselines.deepq import CnnPolicy
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import PPO2, DQN
 
