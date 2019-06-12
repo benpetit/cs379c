@@ -1,5 +1,6 @@
 import numpy as np
 import gym
+import matplotlib.pyplot as plt
 
 class POPacman:
     colors = {"pacman": (210, 164, 74), # orange
@@ -7,17 +8,22 @@ class POPacman:
               "wall":(228, 111, 111),
               "background": (0, 28, 136)}
 
-    def __init__(self, radius, recentering = False, circle = False):
+    def __init__(self, radius = 60, recentering = False, circle = False):
         self._radius = radius
         self._circle = circle
         self._recentering = recentering
         self._env = gym.make('MsPacman-v0')
         self.observation_space = self._env.observation_space
         self.action_space = self._env.action_space
-
+        self.reward_range = self._env.reward_range
+        self.metadata = self._env.metadata
+        self.unwrapped = self._env.unwrapped
 
     def reset(self):
         return self._env.reset()
+
+    def seed(self, s):
+        return self._env.seed(s)
 
     def render(self):
         self._env.render()
@@ -65,14 +71,10 @@ class POPacman:
 
             return new_obs
 
-      else: 
-           max_x = min(int(mean_x + radius), windows[0])
-           min_x = max(int(mean_x - radius), 0)
-           lx = (max_x - min_x) // 2
-           rx = (max_x - min_x) - lx
-           max_y = min(int(mean_y + radius), windows[1])
-           min_y = max(int(mean_y - radius), 0)
-           ly = (max_y - min_y) // 2
-           ry = (max_y - min_y) - ly
-           return new_obs[min_x:max_x, min_y:max_y]
+        else:
+            max_x = min(int(mean_x + radius), windows[0])
+            min_x = max(int(mean_x - radius), 0)
+            max_y = min(int(mean_y + radius), windows[1])
+            min_y = max(int(mean_y - radius), 0)
+            return obs[min_x:max_x, min_y:max_y]
 
