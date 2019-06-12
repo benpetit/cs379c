@@ -22,12 +22,15 @@ radius = 20
 IMAGES = []
 
 
-def adapt_obs(obs):
+def adapt_obs(obs, i):
     """
     Adapting the observation from pacman
 
     """
-
+    if i in range(900, 1000):
+        im = plt.imshow(obs)
+        plt.axis('off')
+        plt.savefig("pacman_{}".format(i), bbox_inches='tight')
     # Locate Pac-man
     indices = np.where(np.all(obs == colors["pacman"], axis=-1))
     mean_x, mean_y = np.mean(indices[0]), np.mean(indices[1])
@@ -61,16 +64,18 @@ def adapt_obs(obs):
         new_obs = new_board
     if plot:
         im = plt.imshow(new_obs, animated=True)
+        plt.axis('off')
+        if i in range(900, 1000): plt.savefig("mod_{}".format(i), bbox_inches='tight')
         IMAGES.append([im])
     return new_obs
 
 
 env = gym.make('MsPacman-v0')
 env.reset()
-for _ in range(1000):
+for i in range(1000):
     #env.render()
     obs, _, _, _ = env.step(env.action_space.sample()) # take a random action
-    obs = adapt_obs(obs)
+    obs = adapt_obs(obs, i)
 env.close()
 print("Simulation over")
 if plot:

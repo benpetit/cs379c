@@ -8,7 +8,7 @@ class POPacman:
               "wall":(228, 111, 111),
               "background": (0, 28, 136)}
 
-    def __init__(self, radius = 60, recentering = False, circle = False):
+    def __init__(self, radius = 40, recentering = False, circle = False):
         self._radius = radius
         self._circle = circle
         self._recentering = recentering
