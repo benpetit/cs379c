@@ -7,15 +7,21 @@ class POPacman:
               "wall":(228, 111, 111),
               "background": (0, 28, 136)}
 
-    def __init__(self, radius, recentering = False):
+    def __init__(self, radius = 60, recentering = False):
         self._radius = radius
         self._recentering = recentering
         self._env = gym.make('MsPacman-v0')
         self.observation_space = self._env.observation_space
         self.action_space = self._env.action_space
+        self.reward_range = self._env.reward_range
+        self.metadata = self._env.metadata
+        self.unwrapped = self._env.unwrapped
 
     def reset(self):
         return self._env.reset()
+
+    def seed(self, s):
+        return self._env.seed(s)
 
     def render(self):
         self._env.render()
